@@ -1,9 +1,17 @@
-/api/v1/user/getUsers:
+/api/v1/user/getUser/{id}:
   get:
     tags:
       - User
-    security: []
-    description: Listar Estudiantes    
+    security:
+      - bearerAuth: []
+    description: Detalles de un estudiante    
+    parameters:
+      - in: path
+        name: id
+        type: number
+        description: id del estudiante a buscar
+        type: number
+        required: true
     produces:
       - application/json
     responses:
@@ -12,31 +20,33 @@
         content:
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/definitions/User'              
+              msj:
+                type: object
+                description: Mensaje de respuesta
             example:
               {
-                  "state": true,
-                  "message": "Listado de estudiantes",
-                  "users": [{
-                      "firstName": "daniel",
-                      "secondName": "jose",
-                      "surname": "cruz",
-                      "secondSurName": "casallas",
-                      "typeDocument": 1, //  2 , 3,
-                      "documentNumber": "123456789",
-                      "email": "danielc88@gmail.co,",
-                      "phone": "32123122314"
-                  }, {
-                      "firstName": "daniel",
-                      "secondName": "jose",
-                      "surname": "cruz",
-                      "secondSurName": "casallas",
-                      "typeDocument": 1, //  2 , 3,
-                      "documentNumber": "123456789",
-                      "email": "danielc88@gmail.co,",
-                      "phone": "32123122314"
-                  }, ]
+                  "firstName": "daniel",
+                  "secondName": "jose",
+                  "surname": "cruz",
+                  "secondSurName": "casallas",
+                  "typeDocument": 1, 
+                  "documentNumber": "123456789",
+                  "email": "danielc88@gmail.co,",
+                  "phone": "32123122314"
               }
+      400:
+        description: Petición invalida
+        content:
+          application/json:
+            schema:
+              type: object
+              msj:
+                type: object
+                description: Mensaje de respuesta              
+            example:
+              {
+                "state": false,
+                "message": "Error al consultar el detalle del usuario"
+              }
+
 

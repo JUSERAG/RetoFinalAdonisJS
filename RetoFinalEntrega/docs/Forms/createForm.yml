@@ -1,15 +1,15 @@
-/api/v1/user/create:
+/api/v1/form/postquestions:
  post:
     tags:
-      - User
+      - Form
     security:
       - bearerAuth: []
-    description: Crear usuario
+    description: Aqui se guardan las respuestas dadas a las preguntas por un estudiante
     requestBody:
       content:
         application/json:
           schema:
-             $ref: '#/components/schemas/createUser'            
+             $ref: '#/components/schemas/createForm'            
     responses:
       200:
         description: Petición exitosa
@@ -22,10 +22,11 @@
                   type: object
                   description: Mensaje de respuesta 
             example:
-              {
-                "state": true,
-                "message": "Estudiante creado correctamente"
-              }
+                {
+                    "state": true,
+                    "message": "Respuestas almacenadas con exito"
+                }
+
       400:
         description: Petición invalida
         content:
@@ -39,7 +40,9 @@
             example:
               {
                 "state": false,
-                "message": "Fallo en la creación del estudiante"
+                "message": "No se pudieron almacenar las respuestas"
               }
+
+
 
 

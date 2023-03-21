@@ -4,7 +4,13 @@
       - User
     security:
       - bearerAuth: []
-    description: delete usuario           
+    description: delete usuario
+    parameters:
+      - in: path
+        name: id
+        description: id del estudiante para eliminarlo
+        type: number
+        required: true          
     responses:
       200:
         description: Petición exitosa
@@ -19,7 +25,7 @@
             example:
               {
                 "state": true,
-                "message": "Estudiante actualizado correctamente"
+                "message": "Estudiante eli correctamente"
               }
 
 

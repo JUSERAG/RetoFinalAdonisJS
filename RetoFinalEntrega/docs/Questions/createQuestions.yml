@@ -1,15 +1,15 @@
-/api/v1/user/create:
+/api/v1/questions/create:
  post:
     tags:
-      - User
+      - Question
     security:
       - bearerAuth: []
-    description: Crear usuario
+    description: Crear pregunta
     requestBody:
       content:
         application/json:
           schema:
-             $ref: '#/components/schemas/createUser'            
+             $ref: '#/components/schemas/createQuestion'            
     responses:
       200:
         description: Petición exitosa
@@ -22,10 +22,10 @@
                   type: object
                   description: Mensaje de respuesta 
             example:
-              {
-                "state": true,
-                "message": "Estudiante creado correctamente"
-              }
+               {
+                  "state": true,
+                  "message": "Pregunta creada exitosamente"
+                }
       400:
         description: Petición invalida
         content:
@@ -37,9 +37,10 @@
                   type: object
                   description: Mensaje de respuesta 
             example:
-              {
-                "state": false,
-                "message": "Fallo en la creación del estudiante"
-              }
+               {
+                  "state": false,
+                  "message": "Error al crear la pregunta"
+                }
+
 
 

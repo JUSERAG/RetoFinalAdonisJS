@@ -1,15 +1,21 @@
-/api/v1/user/create:
- post:
+/api/v1/questions/updateAnswer/id:
+  put:
     tags:
-      - User
+      - Question
     security:
       - bearerAuth: []
-    description: Crear usuario
+    description: Actualizar opción de respuesta
+    parameters:
+      - in: path
+        name: id
+        description: id de la opcion de respuesta a actualizar
+        type: number
+        required: true
     requestBody:
       content:
         application/json:
           schema:
-             $ref: '#/components/schemas/createUser'            
+             $ref: '#/components/schemas/updateAnwer'            
     responses:
       200:
         description: Petición exitosa
@@ -18,14 +24,21 @@
             schema:
               type: object
               properties:
+                update:
+                  type: object
+                  properties:
+                    opcion:
+                      type: string
+                    iscorrect:
+                      type: boolean
                 msj:
                   type: object
                   description: Mensaje de respuesta 
             example:
               {
                 "state": true,
-                "message": "Estudiante creado correctamente"
-              }
+                "message": "opcion Editada con exito"
+              },
       400:
         description: Petición invalida
         content:
@@ -38,8 +51,10 @@
                   description: Mensaje de respuesta 
             example:
               {
-                "state": false,
-                "message": "Fallo en la creación del estudiante"
-              }
+                  "state": false,
+                  "message": "Error al editar la opcion"
+              },
+
+
 
 

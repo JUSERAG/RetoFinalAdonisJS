@@ -5,11 +5,17 @@
     security:
       - bearerAuth: []
     description: Actualizar usuario
+    parameters:
+      - in: path
+        name: id
+        description: id del registro del estudiante para eliminarlo
+        type: number
+        required: true
     requestBody:
       content:
         application/json:
           schema:
-             $ref: '#/components/schemas/update'            
+             $ref: '#/components/schemas/updateUser'            
     responses:
       200:
         description: Petición exitosa
@@ -45,5 +51,21 @@
                 "state": true,
                 "message": "Estudiante actualizado correctamente"
               }
+      400:
+        description: Petición invalida
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                msj:
+                  type: object
+                  description: Mensaje de respuesta 
+            example:
+              {
+                "state": false,
+                "message": "Error al actualizar"
+              }
+
 
 

@@ -1,0 +1,60 @@
+/api/v1/questions/getOptions/{id}:
+  get:
+    tags:
+      - Question
+    security:
+      - bearerAuth: []
+    description: opciones de una pregunta    
+    parameters:
+      - in: path
+        name: id
+        description: id de la pregunta para listarla con sus respectivas opciones de respueta
+        type: number
+        required: true
+    produces:
+      - application/json
+    responses:
+      200:
+        description: Petición exitosa
+        content:
+          application/json:
+            schema:
+              msj:
+                type: object
+                description: Mensaje de respuesta
+            example:
+               {
+                    "state": true,
+                    "message": "Listado de opciones",
+                    "options": [{
+                        "id": 1,
+                        "option": "lunes",
+                    }, {
+                        "id": 2,
+                        "option": "martes",
+                    }, {
+                        "id": 3,
+                        "option": "miercoles",
+                    }, {
+                        "id": 4,
+                        "option": "jueves",
+                    }]
+                }
+
+      400:
+        description: Petición invalida
+        content:
+          application/json:
+            schema:
+              type: object
+              msj:
+                type: object
+                description: Mensaje de respuesta              
+            example:
+              {
+                  "state": false,
+                  "message": "Error al obtener el listado de opciones"
+              }
+
+
+

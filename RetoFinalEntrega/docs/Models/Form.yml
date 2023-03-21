@@ -1,0 +1,30 @@
+definitions:
+  Form:
+    type: object
+    properties:
+      get:
+        type: object
+        properties:
+          id:
+            type: number
+          option:
+            type: string
+components:
+  schemas:
+    createForm:
+        type: object
+        properties:            
+            estudianteId:
+              type: number
+              description: id del estudiante que creó el formulario
+            answers:
+              type: string
+              description: son las respuestas seleccionadas por el estudiante
+        required:
+          - estudianteId
+          - answers       
+        example:
+            {
+              "estudianteId": 123456,
+              "answers": [4, 1, 3, 5]
+            }

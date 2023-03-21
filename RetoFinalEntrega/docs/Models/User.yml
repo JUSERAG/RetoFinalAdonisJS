@@ -37,10 +37,10 @@ components:
           - password            
         example:
           {
-            "email": "pedroperez@gmail.com",
-            "password": "Contraseña123"
+            "email": "rodrigo@gmail.com",
+            "password": "12345"
           }
-    create:
+    createUser:
       type: object
       properties:            
         firstName:
@@ -91,7 +91,7 @@ components:
           "rol": 1,
           "phone": "3235095579"
       }
-    update:
+    updateUser:
       type: object
       properties:
         firstName:

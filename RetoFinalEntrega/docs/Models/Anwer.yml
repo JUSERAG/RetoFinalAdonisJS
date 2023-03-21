@@ -1,0 +1,17 @@
+components:
+  schemas:
+    updateQuestion:
+      type: object
+      properties:
+        opcion:
+          type: string
+          description: opción de la respuesta
+        iscorrect:
+          type: boolean
+          description: si la respuesta es correcta o no
+      required: true
+      example:
+         {
+          "opcion": "Utiliza buenas practicas?",
+          "iscorrect":true
+        }

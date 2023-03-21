@@ -1,14 +1,25 @@
+definitions:
+  Question:
+    type: object
+    properties:
+      get:
+        type: object
+        properties:
+          state:
+            type: boolean
+          question:
+            type: object
 components:
   schemas:
-    create:
+    createQuestion:
         type: object
         properties:            
             question:
               type: string
-              description: correo del usuario
+              description: Pregunta del cuestionario
             options:
               type: object
-              description: objeto con las opciones de respuesta asignadas a una pregunta  
+              description: option para la opcion de respuesta y iscorrect para saber si es correcta o no
         required:
           - question
           - options            
@@ -30,3 +41,16 @@ components:
                       "iscorrect":false
                   } ]
           }
+    updateQuestion:
+      type: object
+      properties:
+        question:
+          type: string
+          description: Pregunta modificada
+        
+      required: true
+      example:
+        {
+          "question": "Cuantos años tiene?"
+        }
+    

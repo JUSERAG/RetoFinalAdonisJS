@@ -10,13 +10,13 @@ Route.group(() => {
     Route.get('/getUser/:id', 'UsersController.getUser')
     Route.put('/update/:id', 'UsersController.updateUser')
     Route.delete('/delete/:id', 'UsersController.deleteUser')
-  }).prefix('/user')
+  }).prefix('/user').middleware('Admin')
 
   Route.group(() => {
     Route.post('/create','QuestionsController.createQuestion')
     Route.get('/getQuestions','QuestionsController.getQuestions')
-    Route.put('/update/:id', 'QuestionsController.updateQuestion')
-    Route.delete('/delete/:id', 'QuestionsController.deleteQuestion')
+    Route.put('/updateQuestion/:id', 'QuestionsController.updateQuestion')
+    Route.delete('/deleteQuestion/:id', 'QuestionsController.deleteQuestion')
 
     Route.get('/getOptions/:id','AnswersController.getOptionQuestion')
     Route.put('/updateAnswer/:id', 'AnswersController.updateAnswer')
@@ -27,14 +27,14 @@ Route.group(() => {
     Route.get('/getTypeDocuments','TypeDocumentsController.getTypeDocuments')
     Route.put('/update/:id', 'TypeDocumentsController.updateTypeDocument')
     Route.delete('/delete/:id', 'TypeDocumentsController.deleteTypeDocument')
-  }).prefix('/typeDocument')
+  }).prefix('/typeDocument').middleware('Admin')
  
   Route.group(() => {
     Route.post('/create','RolesController.createRole')
     Route.get('/getRoles','RolesController.getRoles')
     Route.put('/update/:id', 'RolesController.updateRole')
     Route.delete('/delete/:id', 'RolesController.deleteRole')
-  }).prefix('/role')
+  }).prefix('/role').middleware('Admin')
 
   Route.group(() => {
     Route.get('/getQuestions/:id', 'FormsController.getForm')

@@ -8,7 +8,7 @@ export default class UsersController {
     public async createUser({request, response}: HttpContextContract) {
         const dataUser = request.all()
         try {
-            const salt = bcrypt.genSaltSync()
+            const salt = bcrypt.genSaltSync() 
             const newUser = new User()
             newUser.firstName = dataUser.firstName
             newUser.secondName = dataUser.secondName

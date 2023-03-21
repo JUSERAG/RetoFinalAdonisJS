@@ -38,6 +38,7 @@ export default class AnswersController {
                 options
             })
         } catch (error) {
+            console.log(error)
             return response.status(400).json({
                 "state": false,
                 "message": "Error al obtener el listado de opciones"

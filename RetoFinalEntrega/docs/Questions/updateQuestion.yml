@@ -1,15 +1,21 @@
-/api/v1/user/create:
- post:
+/api/v1/user/updateQuestion/{id}:
+ put:
     tags:
-      - User
+      - Question
     security:
       - bearerAuth: []
-    description: Crear usuario
+    description: Actualizar question
+    parameters:
+      - in: path
+        name: id
+        description: id de la pregunta a editar
+        type: number
+        required: true
     requestBody:
       content:
         application/json:
           schema:
-             $ref: '#/components/schemas/createUser'            
+             $ref: '#/components/schemas/updateQuestion'            
     responses:
       200:
         description: Petición exitosa
@@ -18,13 +24,18 @@
             schema:
               type: object
               properties:
+                update:
+                  type: object
+                  properties:
+                    question:
+                      type: string
                 msj:
                   type: object
                   description: Mensaje de respuesta 
             example:
               {
                 "state": true,
-                "message": "Estudiante creado correctamente"
+                "message": "Pregunta Editada con exito"
               }
       400:
         description: Petición invalida
@@ -39,7 +50,8 @@
             example:
               {
                 "state": false,
-                "message": "Fallo en la creación del estudiante"
+                "message": "Error al actualizar"
               }
+
 
 

@@ -1,15 +1,18 @@
-/api/v1/user/create:
- post:
+/api/v1/questions/deleteQuestion/{id}:
+ delete:
     tags:
-      - User
+      - Question
     security:
       - bearerAuth: []
-    description: Crear usuario
-    requestBody:
-      content:
-        application/json:
-          schema:
-             $ref: '#/components/schemas/createUser'            
+    description: delete question
+    parameters:
+      - in: path
+        name: id
+        type: number
+        description: id de la pregunta a eliminar
+        required: true
+        shema:
+          type: number
     responses:
       200:
         description: Petición exitosa
@@ -24,7 +27,7 @@
             example:
               {
                 "state": true,
-                "message": "Estudiante creado correctamente"
+                "message": "Pregunta Eliminada con exito"
               }
       400:
         description: Petición invalida
@@ -39,7 +42,5 @@
             example:
               {
                 "state": false,
-                "message": "Fallo en la creación del estudiante"
+                "message": "Error al eliminar la pregunta"
               }
-
-

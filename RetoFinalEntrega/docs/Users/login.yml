@@ -32,11 +32,34 @@
                   "payload": {
                       "state": true,
                       "id": 1,
-                      "name": "Pedro Perez Rodriguez",
+                      "name": "rodrigo",
                       "role": "Administrador"
                   },
                   "mesagge": "Ingreso exitoso",
                   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGF0ZSI6dHJ1ZSwiaWQiOjEsIm5hbWUiOiJKdWFuIFNlYmFzdGlhbiBSYW1pcmV6IEFndWlycmUiLCJyb2xlIjoiQWRtaW5pc3RyYWRvciIsImlhdCI6MTY3OTMyOTA5NiwiZXhwIjoxNjc5MzMyNjk2fQ.gff1lzrq0HVoOwWwnnHKiAKRl0kJbNRrXsL2IAqDdK0"
               }
+      400:
+          description: Petición invalida
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  login:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+                      password: 
+                        type: string
+                  msj:
+                    type: object
+                    description: Mensaje de respuesta 
+              example:
+                {
+                  "state": false,
+                  "message": "constraseña o email invalido "
+                }
+
 
 
