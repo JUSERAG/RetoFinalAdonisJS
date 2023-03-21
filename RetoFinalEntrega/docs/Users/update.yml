@@ -1,0 +1,49 @@
+/api/v1/user/update/{id}:
+ put:
+    tags:
+      - User
+    security:
+      - bearerAuth: []
+    description: Actualizar usuario
+    requestBody:
+      content:
+        application/json:
+          schema:
+             $ref: '#/components/schemas/update'            
+    responses:
+      200:
+        description: Petición exitosa
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                update:
+                  type: object
+                  properties:
+                    firstName:
+                      type: string
+                    secondName: 
+                      type: string
+                    surname: 
+                      type: string
+                    secondsurName: 
+                      type: string
+                    typeDocument: 
+                      type: number
+                    documentNumber: 
+                      type: string
+                    email: 
+                      type: string
+                    phone: 
+                      type: string
+                msj:
+                  type: object
+                  description: Mensaje de respuesta 
+            example:
+              {
+                "state": true,
+                "message": "Estudiante actualizado correctamente"
+              }
+
+

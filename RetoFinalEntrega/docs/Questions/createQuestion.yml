@@ -1,0 +1,53 @@
+/api/v1/questions/create:
+ post:
+    tags:
+      - User
+    security:
+      - bearerAuth: []
+    description: Crear pregunta
+    requestBody:
+      content:
+        application/json:
+          schema:
+             $ref: '#/components/schemas/create'            
+    responses:
+      200:
+        description: Petición exitosa
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                create:
+                  type: object
+                  properties:
+                    firstName:
+                      type: string
+                    secondName: 
+                      type: string
+                    surname: 
+                      type: string
+                    secondsurName: 
+                      type: string
+                    typeDocument: 
+                      type: number
+                    documentNumber: 
+                      type: string
+                    email: 
+                      type: string
+                    password: 
+                      type: string
+                    rol: 
+                      type: number
+                    phone: 
+                      type: string
+                msj:
+                  type: object
+                  description: Mensaje de respuesta 
+            example:
+              {
+                "state": true,
+                "message": "Estudiante creado correctamente"
+              }
+
+

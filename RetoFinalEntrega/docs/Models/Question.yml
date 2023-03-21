@@ -1,0 +1,32 @@
+components:
+  schemas:
+    create:
+        type: object
+        properties:            
+            question:
+              type: string
+              description: correo del usuario
+            options:
+              type: object
+              description: objeto con las opciones de respuesta asignadas a una pregunta  
+        required:
+          - question
+          - options            
+        example:
+          {
+              "question": "¿que dia es hoy?",
+              "options": [
+                  {
+                      "opcion":"esta es correcta",
+                      "iscorrect":true
+                  },{
+                      "opcion":"incorrecta",
+                      "iscorrect":false
+                  },{
+                      "opcion":"incorrecta",
+                      "iscorrect":false
+                  },{
+                      "opcion":"incorrecta",
+                      "iscorrect":false
+                  } ]
+          }

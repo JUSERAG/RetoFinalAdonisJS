@@ -1,0 +1,135 @@
+definitions:
+  User:
+    type: object
+    properties:
+      get:
+        type: object
+        properties:
+          firstName:
+            type: string
+          secondName: 
+            type: string
+          surname: 
+            type: string
+          secondsurName: 
+            type: string
+          typeDocument: 
+            type: number
+          documentNumber: 
+            type: string
+          email: 
+            type: string
+          phone: 
+            type: string     
+components:
+  schemas:
+    login:
+        type: object
+        properties:            
+            email:
+              type: string
+              description: correo del usuario
+            password:
+              type: string
+              description: contraseña del usuario    
+        required:
+          - email
+          - password            
+        example:
+          {
+            "email": "pedroperez@gmail.com",
+            "password": "Contraseña123"
+          }
+    create:
+      type: object
+      properties:            
+        firstName:
+          type: string
+          description: Primer Nombre
+        secondName: 
+          type: string
+          description: segundo nombre
+        surname: 
+          type: string
+          description: primer apellido
+        secondsurName: 
+          type: string
+          description: segundo apellido
+        typeDocument: 
+          type: number
+          description: numero que hace referencia al tipo de documento en la tabla typeDocument
+        documentNumber: 
+          type: string
+          description: numero de identificación
+        email: 
+          type: string
+          description: correo del estudiante
+        password: 
+          type: string
+          description: contraseña 
+        rol: 
+          type: number
+          description: numero que hace referencia al rol en la tabla roles
+        phone: 
+          type: string
+          description: numero telefonico
+      required:
+        - typeDocument
+        - documentNumber
+        - email
+        - password            
+      example:
+        {
+          "firstName": "Rodrigo",
+          "secondName": "Mario",
+          "surname": "Perez",
+          "secondSurName": "Rodriguez",
+          "typeDocument": 1,
+          "documentNumber": "123456",
+          "email": "rodrigo@gmail.com",
+          "password": "12345",
+          "rol": 1,
+          "phone": "3235095579"
+      }
+    update:
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: Primer Nombre
+        secondName: 
+          type: string
+          description: segundo nombre
+        surname: 
+          type: string
+          description: primer apellido
+        secondsurName: 
+          type: string
+          description: segundo apellido
+        typeDocument: 
+          type: number
+          description: numero que hace referencia al tipo de documento en la tabla typeDocument
+        documentNumber: 
+          type: string
+          description: numero de identificación
+        email: 
+          type: string
+          description: correo del estudiante
+        phone: 
+          type: string
+          description: numero telefonico
+      required:          
+      example:
+        {
+          "firstName": "Rodrigo",
+          "secondName": "Mario",
+          "surname": "Perez",
+          "secondSurName": "Rodriguez",
+          "typeDocument": 1,
+          "documentNumber": "123456",
+          "email": "rodrigo@gmail.com",
+          "phone": "321456854"
+        }
+    
+
+    
