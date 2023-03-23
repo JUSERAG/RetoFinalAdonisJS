@@ -77,7 +77,8 @@ components:
         - typeDocument
         - documentNumber
         - email
-        - password            
+        - password
+        - rol        
       example:
         {
           "firstName": "Rodrigo",
@@ -89,6 +90,53 @@ components:
           "email": "rodrigo@gmail.com",
           "password": "12345",
           "rol": 1,
+          "phone": "3235095579"
+      }
+    createAdmin:
+      type: object
+      properties:            
+        firstName:
+          type: string
+          description: Primer Nombre
+        secondName: 
+          type: string
+          description: segundo nombre
+        surname: 
+          type: string
+          description: primer apellido
+        secondsurName: 
+          type: string
+          description: segundo apellido
+        typeDocument: 
+          type: number
+          description: numero que hace referencia al tipo de documento en la tabla typeDocument
+        documentNumber: 
+          type: string
+          description: numero de identificación
+        email: 
+          type: string
+          description: correo del estudiante
+        password: 
+          type: string
+          description: contraseña 
+        phone: 
+          type: string
+          description: numero telefonico
+      required:
+        - typeDocument
+        - documentNumber
+        - email
+        - password            
+      example:
+        {
+          "firstName": "Rodrigo",
+          "secondName": "Mario",
+          "surname": "Perez",
+          "secondSurName": "Rodriguez",
+          "typeDocument": 1,
+          "documentNumber": "123456",
+          "email": "rodrigo@gmail.com",
+          "password": "12345",
           "phone": "3235095579"
       }
     updateUser:

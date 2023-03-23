@@ -11,7 +11,7 @@
         type: number
         description: id de la pregunta a eliminar
         required: true
-        shema:
+        schema:
           type: number
     responses:
       200:

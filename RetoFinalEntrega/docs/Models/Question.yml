@@ -9,6 +9,16 @@ definitions:
             type: boolean
           question:
             type: object
+  disableQuestion:
+    type: object
+    properties:
+      get:
+        type: object
+        properties:
+          state:
+            type: boolean
+          message:
+            type: string
 components:
   schemas:
     createQuestion:
@@ -47,7 +57,6 @@ components:
         question:
           type: string
           description: Pregunta modificada
-        
       required: true
       example:
         {

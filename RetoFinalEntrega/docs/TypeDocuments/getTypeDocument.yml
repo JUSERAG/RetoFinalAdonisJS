@@ -1,0 +1,42 @@
+/api/v1/typeDocument/getTypeDocuments:
+  get:
+      tags:
+        - TypeDocument
+      security: 
+        - bearerAuth: []
+      description: Listar los tipo de documentos
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Petición exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/definitions/Role'              
+              example:
+                [
+                    {
+                        "id": 1,
+                        "name": "CC"
+                    },
+                    {
+                        "id": 2,
+                        "name": "TI"
+                    }
+                ]
+        400:
+          description: Petición invalida
+          content:
+            application/json:
+              schema:
+                msj:
+                  type: object
+                  description: Mensaje de respuesta              
+              example:
+                {
+                    "state": false,
+                    "message": "Error al listar los tipos de documentos"
+                }

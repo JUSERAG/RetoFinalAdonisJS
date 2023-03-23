@@ -1,0 +1,37 @@
+definitions:
+  Role:
+    type: object
+    properties:
+      get:
+        type: object
+        properties:
+          id:
+            type: number
+          name:
+            type: string
+components:
+  schemas:
+    createRole:
+        type: object
+        properties:            
+            name:
+              type: string
+              description: nombre del rol
+        required:
+          - name
+        example:
+          {
+            "name": "Profesor"
+          }
+    updateRole:
+      type: object
+      properties:
+        name:
+          type: string
+          description: nombre del rol
+      required:
+      example:
+        {
+          "name": "Teacher"
+        }
+    

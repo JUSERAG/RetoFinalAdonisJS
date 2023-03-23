@@ -10,7 +10,6 @@
         name: id
         type: number
         description: id del estudiante a buscar
-        type: number
         required: true
     produces:
       - application/json

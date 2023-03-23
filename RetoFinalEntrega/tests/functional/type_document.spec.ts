@@ -4,7 +4,7 @@ import { obtenerTokenAutorizacion } from './testAuths'
 test('Create type document', async ({client, assert}) => {
   const token = await obtenerTokenAutorizacion()
   const body = {
-    "name": "CC extrangera"
+    "name": "CC Extranjera"
 }
   const response = await client.post('/api/v1/typeDocument/create').json(body).header('Authorization', `Bearer ${token}`)
     response.assertStatus(200)
@@ -14,7 +14,7 @@ test('Create type document', async ({client, assert}) => {
 test('Fail Create type document', async ({client, assert}) => {
   const token = await obtenerTokenAutorizacion()
   const body = {
-    "nam": "T.I." //EL CAMPO NAME MAL ESCRITO
+    "name": "CC Extranjera" //SE ACABO DE CREAR UN TIPO DE DOCUMENTO CON ESE NOMBRE
 }
   const response = await client.post('/api/v1/typeDocument/create').json(body).header('Authorization', `Bearer ${token}`)
     response.assertStatus(400)
@@ -32,7 +32,7 @@ test('update type document', async({client, assert}) => {
   const token = await obtenerTokenAutorizacion()
   const idUpdateTypeDocument = 3
     const body = {
-      "name": "CC extranjera"
+      "name": "CC Ext."
  }
   const response = await client.put(`/api/v1/typeDocument/update/${idUpdateTypeDocument}`).json(body).header('Authorization', `Bearer ${token}`)
     response.assertStatus(200)
@@ -43,7 +43,7 @@ test('Fail update type document', async({client, assert}) => {
   const token = await obtenerTokenAutorizacion()
   const idUpdateUser = 100
   const body = {
-    "nam": "T.I." //EL CAMPO NAME MAL ESCRITO
+    "name": "CC" //EL TIPO DE DOCUMENTO CC YA ESTÁ REGISTRADO
  }
   const response = await client.put(`/api/v1/typeDocument/update/${idUpdateUser}`).json(body).header('Authorization', `Bearer ${token}`)
     response.assertStatus(400)
@@ -60,7 +60,7 @@ test('Delete type document', async({client, assert}) => {
 
 test('Fail delete type document', async({client, assert}) => {
   const token = await obtenerTokenAutorizacion()
-  const idDeleteUser = 100
+  const idDeleteUser = 3 //SE ACABO DE BORRAR ESE TIPO DE DOCUMENTO
   const response = await client.delete(`/api/v1/typeDocument/delete/${idDeleteUser}`).header('Authorization', `Bearer ${token}`)
     response.assertStatus(400)
     assert.isObject(response.body())

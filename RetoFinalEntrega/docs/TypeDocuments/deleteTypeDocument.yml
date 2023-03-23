@@ -1,21 +1,18 @@
-/api/v1/questions/updateQuestion/{id}:
- put:
+/api/v1/typeDocument/delete/{id}:
+ delete:
     tags:
-      - Question
+      - TypeDocument
     security:
       - bearerAuth: []
-    description: Actualizar question
+    description: delete rol
     parameters:
       - in: path
         name: id
-        description: id de la pregunta a editar
         type: number
+        description: id de la pregunta a eliminar
         required: true
-    requestBody:
-      content:
-        application/json:
-          schema:
-             $ref: '#/components/schemas/updateQuestion'            
+        schema:
+          type: number
     responses:
       200:
         description: Petición exitosa
@@ -24,18 +21,13 @@
             schema:
               type: object
               properties:
-                update:
-                  type: object
-                  properties:
-                    question:
-                      type: string
                 msj:
                   type: object
                   description: Mensaje de respuesta 
             example:
               {
                 "state": true,
-                "message": "Pregunta Editada con exito"
+                "message": "Tipo de documento Eliminado con exito"
               }
       400:
         description: Petición invalida
@@ -50,8 +42,5 @@
             example:
               {
                 "state": false,
-                "message": "Error al actualizar"
+                "message": "Error al eliminar el tipo de documento"
               }
-
-
-

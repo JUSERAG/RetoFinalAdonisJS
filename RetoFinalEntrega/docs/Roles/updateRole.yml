@@ -1,21 +1,21 @@
-/api/v1/questions/updateQuestion/{id}:
+/api/v1/role/update/{id}:
  put:
     tags:
-      - Question
+      - Role
     security:
       - bearerAuth: []
-    description: Actualizar question
+    description: Actualizar rol
     parameters:
       - in: path
         name: id
-        description: id de la pregunta a editar
+        description: id del rol para editar
         type: number
         required: true
     requestBody:
       content:
         application/json:
           schema:
-             $ref: '#/components/schemas/updateQuestion'            
+             $ref: '#/components/schemas/updateRole'            
     responses:
       200:
         description: Petición exitosa
@@ -27,7 +27,7 @@
                 update:
                   type: object
                   properties:
-                    question:
+                    name:
                       type: string
                 msj:
                   type: object
@@ -35,7 +35,7 @@
             example:
               {
                 "state": true,
-                "message": "Pregunta Editada con exito"
+                "message": "Rol Editado con exito"
               }
       400:
         description: Petición invalida
@@ -50,7 +50,7 @@
             example:
               {
                 "state": false,
-                "message": "Error al actualizar"
+                "message": "Error al actualizar el rol"
               }
 
 

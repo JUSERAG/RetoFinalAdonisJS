@@ -28,8 +28,8 @@ test('Create question', async({client, assert}) => {
 test('Fail Create question', async({client, assert}) => {
   const token = await obtenerTokenAutorizacion()
   const body = {
-    "questio": "¿que dia es hoy?",
-    "option": [
+    "question": null, //EL CAMPO 'question' NO PUEDE SER NULO
+    "options": [
         {
             "opcion":"esta es correcta",
             "iscorrect":true
@@ -62,27 +62,27 @@ test('update question', async({client, assert}) => {
   const idUpdateQuestion = 1
   const body = {
     "question":"¿Cuantos años tiene?"
-}
-  const response = await client.put(`/api/v1/questions/update/${idUpdateQuestion}`).json(body).header('Authorization', `Bearer ${token}`)
+  }
+  const response = await client.put(`/api/v1/questions/updateQuestion/${idUpdateQuestion}`).json(body).header('Authorization', `Bearer ${token}`)
     response.assertStatus(200)
     assert.isObject(response.body())
 })
 
 test('Fail update question', async({client, assert}) => {
   const token = await obtenerTokenAutorizacion()
-  const idUpdateQuestion = 100
+  const idUpdateQuestion = 100 //NO EXISTE PREGUNTA CON ID 100
   const body = {
     "question":"¿Cuantos años tiene?"
   }
-  const response = await client.put(`/api/v1/questions/update/${idUpdateQuestion}`).json(body).header('Authorization', `Bearer ${token}`)
+  const response = await client.put(`/api/v1/questions/updateQuestion/${idUpdateQuestion}`).json(body).header('Authorization', `Bearer ${token}`)
     response.assertStatus(400)
     assert.isObject(response.body())
 })
 
 test('option question', async({client, assert}) => {
   const token = await obtenerTokenAutorizacion()
-  const idUpdateQuestion = 1
-  const response = await client.get(`/api/v1/questions/getOptions/${idUpdateQuestion}`).header('Authorization', `Bearer ${token}`)
+  const idGetQuestion = 1
+  const response = await client.get(`/api/v1/questions/getOptions/${idGetQuestion}`).header('Authorization', `Bearer ${token}`)
     response.assertStatus(200)
     assert.isObject(response.body())
 })
@@ -90,31 +90,31 @@ test('option question', async({client, assert}) => {
 
 test('fail option question', async({client, assert}) => {
   const token = await obtenerTokenAutorizacion()
-  const idUpdateQuestion = 100
-  const response = await client.get(`/api/v1/questions/getOptions/${idUpdateQuestion}`).header('Authorization', `Bearer ${token}`)
+  const idGetQuestion = 100 //NO EXISTE PREGUNTA CON ID 100
+  const response = await client.get(`/api/v1/questions/getOptions/${idGetQuestion}`).header('Authorization', `Bearer ${token}`)
     response.assertStatus(400)
     assert.isObject(response.body())
 })
 
 test('update answer', async({client, assert}) => {
   const token = await obtenerTokenAutorizacion()
-  const idUpdateQuestion = 1
+  const idUpdateAnswer = 1
   const body = {
               "opcion":"esta es correcta",
               "iscorrect":true
             }
-  const response = await client.put(`/api/v1/questions/updateAnswer/${idUpdateQuestion}`).json(body).header('Authorization', `Bearer ${token}`)
+  const response = await client.put(`/api/v1/questions/updateAnswer/${idUpdateAnswer}`).json(body).header('Authorization', `Bearer ${token}`)
     response.assertStatus(200)
     assert.isObject(response.body())
 })
 
 test('fail update answer', async({client, assert}) => {
   const token = await obtenerTokenAutorizacion()
-  const idUpdateQuestion = 200
+  const idUpdateQuestion = 100 //NO EXISTE OPCIÓN DE RESPUESTA CON ID 100
   const body = {
-              "option":"esta es correcta", //LOS CAMPOS OPTION Y ISCORRECT MAL ESCRITOS
-              "iscorrect":true
-            }
+                  "opcion":"esta es correcta",
+                  "iscorrect":true
+                }
   const response = await client.put(`/api/v1/questions/updateAnswer/${idUpdateQuestion}`).json(body).header('Authorization', `Bearer ${token}`)
     response.assertStatus(400)
     assert.isObject(response.body())
@@ -123,15 +123,15 @@ test('fail update answer', async({client, assert}) => {
 test('Delete question', async({client, assert}) => {
   const token = await obtenerTokenAutorizacion()
   const idDeleteQuestion = 1
-  const response = await client.delete(`/api/v1/questions/delete/${idDeleteQuestion}`).header('Authorization', `Bearer ${token}`)
+  const response = await client.delete(`/api/v1/questions/deleteQuestion/${idDeleteQuestion}`).header('Authorization', `Bearer ${token}`)
     response.assertStatus(200)
     assert.isObject(response.body())
 })
 
 test('Fail delete question', async({client, assert}) => {
   const token = await obtenerTokenAutorizacion()
-  const idDeleteQuestion = 100
-  const response = await client.delete(`/api/v1/questions/delete/${idDeleteQuestion}`).header('Authorization', `Bearer ${token}`)
+  const idDeleteQuestion = 100 //NO EXISTE PREGUNTA CON ID 100
+  const response = await client.delete(`/api/v1/questions/deleteQuestion/${idDeleteQuestion}`).header('Authorization', `Bearer ${token}`)
     response.assertStatus(400)
     assert.isObject(response.body())
 })

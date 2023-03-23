@@ -33,6 +33,35 @@ export default class UsersController {
         }
     }
 
+    public async createAdmin({request, response}: HttpContextContract) {
+        const dataAdmin = request.all()
+        try {
+            const salt = bcrypt.genSaltSync() 
+            const newAdmin = new User()
+            newAdmin.firstName = dataAdmin.firstName
+            newAdmin.secondName = dataAdmin.secondName
+            newAdmin.surname = dataAdmin.surname
+            newAdmin.secondSurname = dataAdmin.secondSurName
+            newAdmin.typeDocument = dataAdmin.typeDocument
+            newAdmin.documentNumber = dataAdmin.documentNumber
+            newAdmin.email = dataAdmin.email
+            newAdmin.password = bcrypt.hashSync(dataAdmin.password, salt)
+            newAdmin.rolId= 1
+            newAdmin.phone = dataAdmin.phone
+            await newAdmin.save()
+            return response.status(200).json({
+                'state': true,
+                'message': 'Administrador creado correctamente'
+            })
+        } catch (error) {
+            return response.status(400).json({
+                'status': false,
+                'message': 'Fallo en la creación del administrador '
+            })
+        }
+    }
+
+
     public async loginUser({request, response}: HttpContextContract) {
         const email = request.input('email')
         const password = request.input('password')
@@ -101,7 +130,6 @@ export default class UsersController {
                 users
             })
         } catch (error) {
-            console.log(error)
             return response.status(400).json({
                 'state': false,
                 'message': 'Fallo en el listado de estudiantes'

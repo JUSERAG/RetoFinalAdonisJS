@@ -1,21 +1,14 @@
-/api/v1/questions/updateQuestion/{id}:
- put:
+/api/v1/user/createAdmin:
+ post:
     tags:
-      - Question
-    security:
-      - bearerAuth: []
-    description: Actualizar question
-    parameters:
-      - in: path
-        name: id
-        description: id de la pregunta a editar
-        type: number
-        required: true
+      - User
+    security: []
+    description: Crear administrador
     requestBody:
       content:
         application/json:
           schema:
-             $ref: '#/components/schemas/updateQuestion'            
+             $ref: '#/components/schemas/createAdmin'            
     responses:
       200:
         description: Petición exitosa
@@ -24,18 +17,13 @@
             schema:
               type: object
               properties:
-                update:
-                  type: object
-                  properties:
-                    question:
-                      type: string
                 msj:
                   type: object
                   description: Mensaje de respuesta 
             example:
               {
                 "state": true,
-                "message": "Pregunta Editada con exito"
+                "message": "Administrador creado correctamente"
               }
       400:
         description: Petición invalida
@@ -50,8 +38,7 @@
             example:
               {
                 "state": false,
-                "message": "Error al actualizar"
+                "message": "Fallo en la creación del administrador"
               }
-
 
 

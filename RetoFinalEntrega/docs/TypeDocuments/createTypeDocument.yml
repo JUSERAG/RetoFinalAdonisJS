@@ -1,21 +1,15 @@
-/api/v1/questions/updateQuestion/{id}:
- put:
+/api/v1/typeDocument/create:
+ post:
     tags:
-      - Question
+      - TypeDocument
     security:
       - bearerAuth: []
-    description: Actualizar question
-    parameters:
-      - in: path
-        name: id
-        description: id de la pregunta a editar
-        type: number
-        required: true
+    description: Crear tipo de documento
     requestBody:
       content:
         application/json:
           schema:
-             $ref: '#/components/schemas/updateQuestion'            
+             $ref: '#/components/schemas/createTypeDocument'            
     responses:
       200:
         description: Petición exitosa
@@ -24,19 +18,14 @@
             schema:
               type: object
               properties:
-                update:
-                  type: object
-                  properties:
-                    question:
-                      type: string
                 msj:
                   type: object
                   description: Mensaje de respuesta 
             example:
-              {
-                "state": true,
-                "message": "Pregunta Editada con exito"
-              }
+               {
+                  "state": true,
+                  "message": "Tipo documento creado exitosamente"
+                }
       400:
         description: Petición invalida
         content:
@@ -48,10 +37,10 @@
                   type: object
                   description: Mensaje de respuesta 
             example:
-              {
-                "state": false,
-                "message": "Error al actualizar"
-              }
+               {
+                  "state": false,
+                  "message": "Error al crear el tipo de documento"
+                }
 
 
 

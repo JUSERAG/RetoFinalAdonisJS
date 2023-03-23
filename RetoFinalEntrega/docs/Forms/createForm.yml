@@ -1,4 +1,4 @@
-/api/v1/form/postquestions:
+/api/v1/form/postQuestions:
  post:
     tags:
       - Form

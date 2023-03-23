@@ -1,14 +1,14 @@
 definitions:
-  Form:
+  Forms:
     type: object
     properties:
       get:
         type: object
         properties:
-          id:
-            type: number
-          option:
-            type: string
+          state:
+            type: boolean
+          questions:
+            type: object
 components:
   schemas:
     createForm:
@@ -18,7 +18,7 @@ components:
               type: number
               description: id del estudiante que creó el formulario
             answers:
-              type: string
+              type: json
               description: son las respuestas seleccionadas por el estudiante
         required:
           - estudianteId

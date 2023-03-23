@@ -4,7 +4,7 @@ import { obtenerTokenAutorizacion } from './testAuths'
 test('Create role', async ({client, assert}) => {
   const token = await obtenerTokenAutorizacion()
   const body = {
-    "name": "Profesor"
+    "name": "teacher"
   }
   const response = await client.post('/api/v1/role/create').json(body).header('Authorization', `Bearer ${token}`)
     response.assertStatus(200)
@@ -14,7 +14,7 @@ test('Create role', async ({client, assert}) => {
 test('Fail Create role', async ({client, assert}) => {
   const token = await obtenerTokenAutorizacion()
   const body = {
-    "nam": "Profesor" //EL CAMPO NAME MAL ESCRITO
+    "name": "teacher" //SE ACABO DE CREAR EL PERFIL PROFESOR
 }
   const response = await client.post('/api/v1/role/create').json(body).header('Authorization', `Bearer ${token}`)
     response.assertStatus(400)
@@ -43,7 +43,7 @@ test('Fail update role', async({client, assert}) => {
   const token = await obtenerTokenAutorizacion()
   const idUpdateUser = 100
   const body = {
-    "nam": "Student" //EL CAMPO NAME MAL ESCRITO
+    "nam": "Administrador" //EL PERFIL 'Administrador' YA FUE CREADO
  }
   const response = await client.put(`/api/v1/role/update/${idUpdateUser}`).json(body).header('Authorization', `Bearer ${token}`)
     response.assertStatus(400)
@@ -60,7 +60,7 @@ test('Delete role', async({client, assert}) => {
 
 test('Fail delete role', async({client, assert}) => {
   const token = await obtenerTokenAutorizacion()
-  const idDeleteUser = 100
+  const idDeleteUser = 3 //SE ACABO DE ELIMINAR EL PERFIL CON ID 3
   const response = await client.delete(`/api/v1/role/delete/${idDeleteUser}`).header('Authorization', `Bearer ${token}`)
     response.assertStatus(400)
     assert.isObject(response.body())

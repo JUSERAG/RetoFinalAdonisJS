@@ -1,4 +1,4 @@
-/api/v1/form/getquestions:
+/api/v1/form/getQuestions:
   get:
       tags:
         - Form
@@ -15,7 +15,7 @@
               schema:
                 type: object
                 items:
-                  $ref: '#/definitions/Form'              
+                  $ref: '#/definitions/Forms'              
               example:
                  {
                   "state": true,

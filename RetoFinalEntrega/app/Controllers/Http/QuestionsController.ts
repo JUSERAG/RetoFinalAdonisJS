@@ -24,9 +24,7 @@ export default class QuestionsController {
                 'message': 'Pregunta creada exitosamente'
             })
          
-
         } catch (error) {
-            console.log(error)
             return response.status(400).json({
                 'state': false,
                 'message': 'Error al crear la pregunta'
@@ -39,8 +37,8 @@ export default class QuestionsController {
         try {
             const questions = await Question.query().select('question', 'id')
             return {
-                "state": true,
-                "questions": questions
+                'state': true,
+                'questions': questions
             }
         } catch (error) {
             return {
@@ -77,8 +75,8 @@ export default class QuestionsController {
             question.question = newQuestion
             await question.save()
             return response.status(200).json({
-                "state": true,
-                "message": "Pregunta Editada con exito"
+                'state': true,
+                'message': 'Pregunta Editada con exito'
 
             })   
         
@@ -86,6 +84,29 @@ export default class QuestionsController {
             return response.status(400).json({
                 'state': false,
                 'message': 'Error al editar la pregunta'
+            })
+        }
+    }
+
+    public async disableQuestion({request, response}: HttpContextContract) {
+        const idQuestion = await request.param('id')
+        try {
+            const question = await Question.findByOrFail('id', idQuestion)
+            question.state = false
+            await question.save()
+            const answers = await Answer.query().where('question_id', idQuestion)
+            answers.map(async element => {
+                element.state = false
+                await element.save()
+            })
+            return response.status(200).json({
+                'state': true,
+                'message': 'Pregunta deshabilitada con exito'
+            })
+        } catch (error) {
+            return response.status(400).json({
+                'state': false,
+                'message': 'No se pudo deshabilitar la pregunta'
             })
         }
     }

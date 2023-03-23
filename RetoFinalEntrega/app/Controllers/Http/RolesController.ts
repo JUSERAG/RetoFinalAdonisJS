@@ -25,7 +25,7 @@ export default class RolesController {
 
     public async getRoles(): Promise<any> {
         try {
-            return await Role.query()
+            return await Role.query().select('id', 'name')
         } catch (error) {
             return {
                 "state": false,
@@ -68,6 +68,7 @@ export default class RolesController {
             })   
         
         } catch (error) {
+
             return response.status(400).json({
                 "state": false,
                 "message": "No se pudo actualizar el rol"

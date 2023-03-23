@@ -1,6 +1,7 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.post('/api/v1/login', 'UsersController.loginUser')
+Route.post('/api/v1/user/createAdmin', 'UsersController.createAdmin')
 
 Route.group(() => {
 
@@ -17,6 +18,7 @@ Route.group(() => {
     Route.get('/getQuestions','QuestionsController.getQuestions')
     Route.put('/updateQuestion/:id', 'QuestionsController.updateQuestion')
     Route.delete('/deleteQuestion/:id', 'QuestionsController.deleteQuestion')
+    Route.get('/disableQuestion/:id', 'QuestionsController.disableQuestion')
 
     Route.get('/getOptions/:id','AnswersController.getOptionQuestion')
     Route.put('/updateAnswer/:id', 'AnswersController.updateAnswer')
@@ -37,9 +39,8 @@ Route.group(() => {
   }).prefix('/role').middleware('Admin')
 
   Route.group(() => {
-    Route.get('/getQuestions/:id', 'FormsController.getForm')
     Route.get('/getQuestions', 'FormsController.getForms')
-    Route.post('/postQuestions', 'FormsController.createForm').middleware('Admin')
+    Route.post('/postQuestions', 'FormsController.createForm')
   }).prefix('form').middleware('Student')
 
-}).prefix('/api/v1')
+}).prefix('/api/v1').middleware('General')

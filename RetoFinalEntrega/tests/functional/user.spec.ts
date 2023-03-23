@@ -4,16 +4,16 @@ import { obtenerTokenAutorizacion } from './testAuths'
 test('Create user', async ({client, assert}) => {
   const token = await obtenerTokenAutorizacion()
   const body = {
-    firstName: 'Fabiana',
-    secondName: 'Maria',
-    surname: "Osorio",
-    secondSurName: "Naranjo",
+    firstName: 'Carlos',
+    secondName: 'Dario',
+    surname: "Fuentes",
+    secondSurName: "Pulgarin",
     typeDocument: 2,
-    documentNumber: "1002619230",
-    email: "Fabiana@gmail.com",
+    documentNumber: "38439432",
+    email: "Carlos@gmail.com",
     password: "12345",
     rol: 2,
-    phone: "3124628571"
+    phone: "3134657899"
   }
   const response = await client.post('/api/v1/user/create').json(body).header('Authorization', `Bearer ${token}`)
     response.assertStatus(200)
@@ -23,16 +23,16 @@ test('Create user', async ({client, assert}) => {
 test('Fail Create user', async({client, assert}) => {
   const token = await obtenerTokenAutorizacion()
   const body = {
-    firstName: 'Juan',
-    secondname: 'Sebastian',
-    surname: "Ramirez",
-    secondSurName: "Aguirre",
-    typeDocument: 1,
-    documentNumbe: "1002547615", 
-    emai: "sebas@gmail.com", 
+    firstName: 'Carlos',
+    secondName: 'Dario',
+    surname: "Fuentes",
+    secondSurName: "Pulgarin",
+    typeDocument: 2,
+    documentNumber: "38439432", //TIPO DE DOCUMENTO Y CORREO YA ESTÁN CREADOS
+    email: "Carlos@gmail.com",
     password: "12345",
-    rolId: 1,
-    phone: "3235095579"
+    rol: 2,
+    phone: "3134657899"
   }
 
   const response = await client.post('/api/v1/user/create').json(body).header('Authorization', `Bearer ${token}`)
@@ -52,13 +52,13 @@ test('update user', async({client, assert}) => {
   const idUpdateUser = 2
   const body = {
     firstName: 'Carlos',
-    secondName: 'Alejandro',
-    surname: "Morales",
-    secondSurName: "Paez",
-    typeDocument: 1,
-    documentNumber: "1002678076",
-    email: "carlos@gmail.com",
-    phone: "35479654322"
+    secondName: 'Mario',
+    surname: "Fuentes",
+    secondSurName: "Pulgarin",
+    typeDocument: 2,
+    documentNumber: "38439432", 
+    email: "Carlos@gmail.com",
+    phone: "3134657899"
   }
   const response = await client.put(`/api/v1/user/update/${idUpdateUser}`).json(body).header('Authorization', `Bearer ${token}`)
     response.assertStatus(200)
@@ -67,16 +67,16 @@ test('update user', async({client, assert}) => {
 
 test('Fail update user', async({client, assert}) => {
   const token = await obtenerTokenAutorizacion()
-  const idUpdateUser = 100
+  const idUpdateUser = 2
   const body = {
     firstName: 'Carlos',
-    secondName: 'Alejandro',
-    surname: "Morales",
-    secondSurName: "Paez",
-    typeDocument: 1,
-    documentNumber: "1002678076",
-    email: null,
-    phone: "35479654322"
+    secondName: 'Mario',
+    surname: "Fuentes",
+    secondSurName: "Pulgarin",
+    typeDocument: 2,
+    documentNumber: "38439432", 
+    email: null, //CORREO NO PUEDE SER NULO
+    phone: "3134657899"
   }
   const response = await client.put(`/api/v1/user/update/${idUpdateUser}`).json(body).header('Authorization', `Bearer ${token}`)
     response.assertStatus(400)
@@ -93,7 +93,7 @@ test('Delete user', async({client, assert}) => {
 
 test('Fail delete user', async({client, assert}) => {
   const token = await obtenerTokenAutorizacion()
-  const idDeleteUser = 100
+  const idDeleteUser = 100 //ID DE USUARIO NO EXISTENTE
   const response = await client.delete(`/api/v1/user/delete/${idDeleteUser}`).header('Authorization', `Bearer ${token}`)
     response.assertStatus(400)
     assert.isObject(response.body())

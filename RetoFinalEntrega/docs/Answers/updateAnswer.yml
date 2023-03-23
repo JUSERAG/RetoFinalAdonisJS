@@ -1,4 +1,4 @@
-/api/v1/questions/updateAnswer/id:
+/api/v1/questions/updateAnswer/{id}:
   put:
     tags:
       - Question
@@ -15,7 +15,7 @@
       content:
         application/json:
           schema:
-             $ref: '#/components/schemas/updateAnwer'            
+             $ref: '#/components/schemas/updateAnswer'            
     responses:
       200:
         description: Petición exitosa
@@ -38,7 +38,7 @@
               {
                 "state": true,
                 "message": "opcion Editada con exito"
-              },
+              }
       400:
         description: Petición invalida
         content:
@@ -53,7 +53,7 @@
               {
                   "state": false,
                   "message": "Error al editar la opcion"
-              },
+              }
 
 
 

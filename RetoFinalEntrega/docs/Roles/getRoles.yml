@@ -1,0 +1,42 @@
+/api/v1/role/getRoles:
+  get:
+      tags:
+        - Role
+      security: 
+        - bearerAuth: []
+      description: Listar los roles    
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Petición exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/definitions/Role'              
+              example:
+                [
+                    {
+                        "id": 1,
+                        "name": "Administrador"
+                    },
+                    {
+                        "id": 2,
+                        "name": "Student"
+                    }
+                ]
+        400:
+          description: Petición invalida
+          content:
+            application/json:
+              schema:
+                msj:
+                  type: object
+                  description: Mensaje de respuesta              
+              example:
+                {
+                    "state": false,
+                    "message": "Error al listar las roles"
+                }

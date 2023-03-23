@@ -5,7 +5,7 @@ export default class TypeDocumentsController {
     public async createTypeDocument({request, response}: HttpContextContract) {
         const name = await request.input('name')
         try {
-            const newDocument = new TypeDocument()
+            const newDocument = new TypeDocument() 
             newDocument.name = name
             await newDocument.save()
             return response.status(200).json({
@@ -25,7 +25,7 @@ export default class TypeDocumentsController {
 
     public async getTypeDocuments(): Promise<any> {
         try {
-            return await TypeDocument.query()
+            return await TypeDocument.query().select('id', 'name')
         } catch (error) {
             return {
                 "state": false,
