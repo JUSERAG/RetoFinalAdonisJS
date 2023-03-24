@@ -11,6 +11,7 @@ Route.group(() => {
     Route.get('/getUser/:id', 'UsersController.getUser')
     Route.put('/update/:id', 'UsersController.updateUser')
     Route.delete('/delete/:id', 'UsersController.deleteUser')
+    Route.post('/state/:id', 'UsersController.stateUser')
   }).prefix('/user').middleware('Admin')
 
   Route.group(() => {
@@ -18,7 +19,7 @@ Route.group(() => {
     Route.get('/getQuestions','QuestionsController.getQuestions')
     Route.put('/updateQuestion/:id', 'QuestionsController.updateQuestion')
     Route.delete('/deleteQuestion/:id', 'QuestionsController.deleteQuestion')
-    Route.get('/disableQuestion/:id', 'QuestionsController.disableQuestion')
+    Route.post('/stateQuestion/:id', 'QuestionsController.stateQuestion')
 
     Route.get('/getOptions/:id','AnswersController.getOptionQuestion')
     Route.put('/updateAnswer/:id', 'AnswersController.updateAnswer')

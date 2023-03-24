@@ -79,6 +79,28 @@ test('Fail update question', async({client, assert}) => {
     assert.isObject(response.body())
 })
 
+test('Change state question', async({client, assert}) => {
+  const token = await obtenerTokenAutorizacion()
+  const idQuestion = 1
+  const body = {
+    state: false  
+  }
+  const response = await client.post(`/api/v1/questions/stateQuestion/${idQuestion}`).json(body).header('Authorization', `Bearer ${token}`)
+  response.assertStatus(200)
+  assert.isObject(response.body())
+})
+
+test('Fail change state question', async({client, assert}) => {
+  const token = await obtenerTokenAutorizacion()
+  const idQuestion = 100 //NO EXISTE LA PREGUNTA 100
+  const body = {
+    state: false  
+  }
+  const response = await client.post(`/api/v1/questions/stateQuestion/${idQuestion}`).json(body).header('Authorization', `Bearer ${token}`)
+  response.assertStatus(400)
+  assert.isObject(response.body())
+})
+
 test('option question', async({client, assert}) => {
   const token = await obtenerTokenAutorizacion()
   const idGetQuestion = 1

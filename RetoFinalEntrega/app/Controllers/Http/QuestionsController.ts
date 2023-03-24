@@ -88,26 +88,28 @@ export default class QuestionsController {
         }
     }
 
-    public async disableQuestion({request, response}: HttpContextContract) {
+    public async stateQuestion({request, response}: HttpContextContract) {
         const idQuestion = await request.param('id')
+        const state = await request.input('state')
         try {
             const question = await Question.findByOrFail('id', idQuestion)
-            question.state = false
+            question.state = state
             await question.save()
             const answers = await Answer.query().where('question_id', idQuestion)
-            answers.map(async element => {
-                element.state = false
+            answers.forEach(async element => {
+                element.state = state
                 await element.save()
             })
             return response.status(200).json({
                 'state': true,
-                'message': 'Pregunta deshabilitada con exito'
+                'message': 'Cambio el estado de la pregunta con exito'
             })
         } catch (error) {
             return response.status(400).json({
                 'state': false,
-                'message': 'No se pudo deshabilitar la pregunta'
+                'message': 'No se pudo cambiar el estado de la pregunta'
             })
         }
     }
+
 }

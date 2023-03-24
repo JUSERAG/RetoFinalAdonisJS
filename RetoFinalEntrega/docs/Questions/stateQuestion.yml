@@ -1,15 +1,21 @@
-/api/v1/questions/create:
- post:
+/api/v1/questions/stateQuestion/{id}:
+  post:
     tags:
       - Question
     security:
       - bearerAuth: []
-    description: Crear pregunta
+    description: Cambiar estado de una pregunta pregunta
+    parameters:
+      - in: path
+        name: id
+        description: id de la pregunta a editar
+        type: number
+        required: true
     requestBody:
       content:
         application/json:
           schema:
-             $ref: '#/components/schemas/createQuestion'             
+             $ref: '#/components/schemas/stateQuestion'             
     responses:
       200:
         description: Petición exitosa
@@ -24,7 +30,7 @@
             example:
                {
                   "state": true,
-                  "message": "Pregunta creada exitosamente"
+                  "message": "Estado de la pregunta modificado exitosamente"
                 }
       400:
         description: Petición invalida
@@ -39,7 +45,7 @@
             example:
                {
                   "state": false,
-                  "message": "Error al crear la pregunta"
+                  "message": "Error al modificar el estado de la pregunta"
                 }
 
 

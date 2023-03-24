@@ -9,16 +9,6 @@ definitions:
             type: boolean
           question:
             type: object
-  disableQuestion:
-    type: object
-    properties:
-      get:
-        type: object
-        properties:
-          state:
-            type: boolean
-          message:
-            type: string
 components:
   schemas:
     createQuestion:
@@ -57,9 +47,21 @@ components:
         question:
           type: string
           description: Pregunta modificada
-      required: true
+      required:
+        - question
       example:
         {
           "question": "Cuantos años tiene?"
         }
-    
+    stateQuestion:
+      type: object
+      properties:
+        state:
+          type: boolean
+          description: True si quiere habilitar la pregunta, false si quiere deshabilitarla  
+      requiered:
+        - state
+      example:
+        {
+          "state": false
+        }

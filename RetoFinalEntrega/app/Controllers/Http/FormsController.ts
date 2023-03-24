@@ -17,7 +17,6 @@ export default class FormsController {
                 "message": "Respuestas almacenadas con exito"
             })
         } catch (error) {
-            console.log(error)
             return response.status(400).json({
                 "state": false,
                 "message": "No se pudieron almacenar las respuestas"
@@ -27,7 +26,6 @@ export default class FormsController {
     }
 
     public async getForms({response}: HttpContextContract) {
-
         try{
             const questionsId = Answer.query()
                 .join('questions', 'answers.question_id', 'questions.id')
@@ -42,8 +40,7 @@ export default class FormsController {
 
             return {
                 "state": true,
-                questions
-        
+                questions    
             }
     } catch (error) {
         return response.status(400).json({

@@ -5,7 +5,7 @@ export async function obtenerTokenAutorizacion(): Promise<string> {
     let endPoint = '/api/v1/login'
     let body = {
         email: 'rodrigo@gmail.com',
-        password: '12345'
+        password: 'user3434'
     }
     let axiosResponse = await axios.post(`${Env.get('PATH_APP') + endPoint}`, body)
     return axiosResponse.data['token']

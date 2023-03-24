@@ -20,7 +20,6 @@ export default class AnswersController {
 
         
         } catch (error) {
-            console.log(error)
             return response.status(400).json({
                 "state": false,
                 "message": "Error al editar la opcion"            

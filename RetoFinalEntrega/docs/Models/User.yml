@@ -178,6 +178,18 @@ components:
           "email": "rodrigo@gmail.com",
           "phone": "321456854"
         }
+    stateUser:
+      type: object
+      properties:
+        state:
+          type: boolean
+          description: True si quiere habilitar al usuario, false si quiere deshabilitarla  
+      requiered:
+        - state
+      example:
+        {
+          "state": false
+        }
     
 
     

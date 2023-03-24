@@ -1,15 +1,21 @@
-/api/v1/questions/create:
- post:
+/api/v1/user/state/{id}:
+  post:
     tags:
-      - Question
+      - User
     security:
       - bearerAuth: []
-    description: Crear pregunta
+    description: Cambiar estado de un usuario
+    parameters:
+      - in: path
+        name: id
+        description: id del usario que quiere cambiar el estado
+        type: number
+        required: true
     requestBody:
       content:
         application/json:
           schema:
-             $ref: '#/components/schemas/createQuestion'             
+             $ref: '#/components/schemas/stateUser'             
     responses:
       200:
         description: Petición exitosa
@@ -24,7 +30,7 @@
             example:
                {
                   "state": true,
-                  "message": "Pregunta creada exitosamente"
+                  "message": "Estado del usario modificado exitosamente"
                 }
       400:
         description: Petición invalida
@@ -39,7 +45,7 @@
             example:
                {
                   "state": false,
-                  "message": "Error al crear la pregunta"
+                  "message": "Error al modificar el estado del usuario"
                 }
 
 

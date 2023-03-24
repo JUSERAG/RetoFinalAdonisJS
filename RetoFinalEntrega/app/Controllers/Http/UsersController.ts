@@ -68,7 +68,7 @@ export default class UsersController {
         try {
             const user = await User.findByOrFail('email', email)
             const validPassword = bcrypt.compareSync(password, user.password)
-            if (! validPassword) throw Error
+            if (! validPassword || ! user.state) throw Error
             const payload = {
                 'id': user.id,
                 'name': user.email,
@@ -123,6 +123,7 @@ export default class UsersController {
             const users = await User.query()
                 .join('roles', 'users.rol_id', 'roles.id')
                 .where('roles.id', 2)
+                .andWhere('users.state', true)
                 .select('firstName','secondName','surname','secondSurname', 'typeDocument', 'documentNumber', 'email', 'phone')
             return response.status(200).json({
                 'state': true,
@@ -197,6 +198,26 @@ export default class UsersController {
             return response.status(400).json({
                 'state': false,
                 'message': 'Error al consultar el detalle del usuario'
+            })
+        }
+    }
+
+    public async stateUser({request, response}: HttpContextContract) {
+        const idUser = await request.param('id')
+        const state = await request.input('state')
+        try {
+            const user = await User.findByOrFail('id', idUser)
+                user.state = state
+                await user.save()
+                
+            return response.status(200).json({
+                'state': true,
+                'message': 'Cambio el estado del usuario con exito'
+            })
+        } catch (error) {
+            return response.status(400).json({
+                'state': false,
+                'message': 'No se pudo cambiar el estado del usuario'
             })
         }
     }

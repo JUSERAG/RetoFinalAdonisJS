@@ -1,6 +1,6 @@
-projectKey=Evaluaci-nDocente
+projectKey=TestEvaluaci-nDocente
 serverUrl=http://localhost:9000
 serverVersion=9.9.0.65466
-dashboardUrl=http://localhost:9000/dashboard?id=Evaluaci-nDocente
-ceTaskId=AYcPXBzdlHiYUxYLMTtr
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYcPXBzdlHiYUxYLMTtr
+dashboardUrl=http://localhost:9000/dashboard?id=TestEvaluaci-nDocente
+ceTaskId=AYcRKKglZ0Kvso5eeTR8
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYcRKKglZ0Kvso5eeTR8
